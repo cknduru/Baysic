@@ -1,0 +1,2 @@
+# Baysic
+Simple Bayesian classifier
