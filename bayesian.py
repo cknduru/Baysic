@@ -1,4 +1,5 @@
 # inspired by https://monkeylearn.com/blog/practical-explanation-naive-bayes-classifier/
+import sys
 
 text_p1 = ('the weather is lovely today', 'sunny')
 text_p2 = ('the weather is sunny and the skies are clear', 'sunny')
@@ -93,22 +94,32 @@ def assemble_probability(input_text, frequencies):
 			score += frequencies[word][1]
 
 	return score
-	
-tset = list()
-tset.append(text_p1)
-tset.append(text_p2)
-tset.append(text_p3)
-tset.append(text_n1)
-tset.append(text_n2)
-tset.append(text_n3)
-pwords, nwords = generate_frequencies(tset)
-#print_frequencies(pwords, nwords)
-score_p = assemble_probability('it is raining today', pwords)
-score_n = assemble_probability('it is raining today', nwords)
 
-print('score positive: {}, score negative: {}'.format(score_p, score_n))
+if __name__ == "__main__":
+	input_sentence = ''
 
-if score_p > score_n:
-	print('it is sunny')
-else:
-	print('it is not sunny')
+	try:
+ 		input_sentence = sys.argv[1]
+ 		print('using input: \'{}\''.format(input_sentence))
+ 	except Exception as ex:
+ 		print('please enter an input sentence')
+ 		exit(-1)
+
+	tset = list()
+	tset.append(text_p1)
+	tset.append(text_p2)
+	tset.append(text_p3)
+	tset.append(text_n1)
+	tset.append(text_n2)
+	tset.append(text_n3)
+	pwords, nwords = generate_frequencies(tset)
+
+	score_p = assemble_probability(input_sentence, pwords)
+	score_n = assemble_probability(input_sentence, nwords)
+
+	print('score positive: {}, score negative: {}'.format(score_p, score_n))
+
+	if score_p > score_n:
+		print('it is sunny')
+	else:
+		print('it is not sunny')
