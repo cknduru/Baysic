@@ -39,7 +39,7 @@ def initialize_categories(training_set):
 		category = text[1]
 		
 		for word in words:
-			# format of tuple is ´(word count in category, frequency)
+			# format of tuple is (word count in category, frequency)
 			if category == 'sunny':
 				pwords[word] = (0, 0.0)
 			elif category == 'not_sunny':
